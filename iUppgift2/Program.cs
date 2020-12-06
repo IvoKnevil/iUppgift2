@@ -7,7 +7,9 @@ namespace iUppgift2
     {
         
         public static bool keepPlaying = true;  //använder denna bool så att programmet körs så länge användaren inte valt att avsluta.
-        
+        public static List<Student> groupMembers = new List<Student>();  
+        public static List<string> namesOfAllMembers = new List<string>();
+
 
         static void Main(string[] args)
         {
@@ -17,18 +19,18 @@ namespace iUppgift2
             //skapar ett objekt för inloggningsprocessen.
             Login tryToLogin = new Login();
 
-            //om lyckad inloggning ändra namnet och färgen på konsolen. Därefter presenteras menyn.
+            //om lyckad inloggning körs resten av koden, annars avslutas programmet.
             if (tryToLogin.LogingIn())  
             {
                 ProgramLayout();
-                CreateStudents();
-                Menu userMenu = new Menu();
+                groupMembers = CreateStudents(); //kallar metoden som skapar ett objekt för varje student. Lägger till objekten i en lista på medlemmar.
+
+                Menu userMenu = new Menu(); //skapar ett objekt för menyn.
 
                 while (keepPlaying)  
                 {
                     userMenu.ShowMenu();  //kallar metoden som visar menyn.
                     MenuActions(userMenu.UserMenuChoice()); //kallar metoden som tar in användarens val. 
-                    
                 }
 
                 Console.WriteLine("See ya!");
@@ -40,7 +42,7 @@ namespace iUppgift2
 
         static string Welcome()
         {
-            return "Välkommen till superprogrammet.";
+            return "Välkommen till superprogrammet. \n";
         }
 
         static void ProgramLayout()
@@ -50,7 +52,7 @@ namespace iUppgift2
             Console.Title = "Bästkusten";
         }
 
-        static void CreateStudents()
+        static List<Student> CreateStudents()
         {
 
             Student ivo = new Student("Ivo", 174, 42, "fotografi", "scampi", "svart", "möjlighet att vara kreativ", "Uppsala", "Split", 1);
@@ -61,26 +63,38 @@ namespace iUppgift2
             Student jerry = new Student("Jerry", 181, 19, "gaming", "älggryta", "teal", "jobbmöjligheter", "Djurö", "Köln", 1);
             Student cecillia = new Student("Cecillia", 163, 29, "The Sims", "risotto", "gul", "möjlighet att vara kreativ", "Norrköping", "Norrköping", 1);
             Student elin = new Student("Elin", 170, 31, "hästar", "sushi", "röd", "personlig utveckling", "Knivsta", "Karlskoga", 2);
+
+            List<Student> listOfStudents = new List<Student>() { ivo, david, johan, oscar, sanjin, jerry, cecillia, elin };
+            return listOfStudents;
+
         }
+
 
         static void MenuActions(List<object> userMenuChoice)
         {
+            
+            Console.WriteLine("Du har valt " + userMenuChoice[1] + "\n");
             switch (userMenuChoice[0])
             {
 
                 case 1:
-                   
-                    Console.WriteLine("Du har valt " + userMenuChoice[1]);
 
+                    foreach (var item in groupMembers)
+                    {
+                        namesOfAllMembers.Add(item.Name);
+                    }
+                    Console.WriteLine(String.Join(", ", namesOfAllMembers)+"\n");
+                    Console.WriteLine("Tryck valfritt tangent för att fortsätta.");
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
 
                 case 2:
 
-                    Console.WriteLine("Du har valt " + userMenuChoice[1]);
                     break;
 
                 case 3:
-                    Console.WriteLine("Du har valt " + userMenuChoice[1]);
+
                     break;
 
                 case 4:
@@ -95,6 +109,8 @@ namespace iUppgift2
 
         }
 
+
+    }
 
 
         class Login
@@ -119,7 +135,7 @@ namespace iUppgift2
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("Du har angett fel lösenord ({0}försök). Vänligen försök igen. ", loginCounter + 1);
+                        Console.WriteLine("Du har angett fel lösenord ({0}försök)\n", loginCounter + 1);
                         loginCounter++;
                     }
 
@@ -131,17 +147,13 @@ namespace iUppgift2
 
             }
 
-
-
         }
-
-
 
 
         class Menu
         {
 
-            private List<string> menuList = new List<string>() { "1. Lista alla deltagare i gruppen bästkusten", "2. Få ut 10 generella detaljer om en medlem", "3. Ta bort en medlem", "4. Avsluta programmet" };
+            private List<string> menuList = new List<string>() { "1. Lista alla deltagare i gruppen bästkusten", "2. Få ut 10 generella detaljer om en medlem", "3. Ta bort en medlem", "4. Avsluta programmet\n" };
             private int userInput;
             private string userInputDescription;
             private List<object> menuChoiceToReturn = new List<object>();
@@ -170,9 +182,6 @@ namespace iUppgift2
 
             }
 
-
-
-
         }
 
 
@@ -189,6 +198,8 @@ namespace iUppgift2
             private string birthplace;
             private int numberOfSiblings;
 
+
+
             public Student()
             {
 
@@ -196,7 +207,16 @@ namespace iUppgift2
 
             public Student(string name, int height, int age, string hobby, string favoriteFood, string favoriteColor, string whyPrograming, string domicile, string birthplace, int numberOfSiblings)
             {
-
+                this.name = name;
+                this.height = height;
+                this.age = age;
+                this.hobby = hobby;
+                this.favoriteFood = favoriteFood;
+                this.favoriteColor = favoriteColor;
+                this.whyPrograming = whyPrograming;
+                this.domicile = domicile;
+                this.birthplace = birthplace;
+                this.numberOfSiblings = numberOfSiblings;
             }
 
 
@@ -322,16 +342,9 @@ namespace iUppgift2
                 }
             }
 
+ 
+
+
+
         }
-
-
-
-
-
-
-
-
-
-
-    }
 }
