@@ -58,7 +58,7 @@ namespace iUppgift2
             Student ivo = new Student("Ivo", 174, 42, "fotografi", "scampi", "svart", "möjlighet att vara kreativ", "Uppsala", "Split", 1);
             Student david = new Student("David", 183, 32, "bjj", "tacos", "blå", "att lösa roblem", "Nörrtälje", "Göteborg", 1);
             Student johan = new Student("Johan", 194, 34, "gaming", "tacos", "blå", "möjlighet för trygg framtid", "Mariefred", "Mariefred", 2);
-            Student oscar = new Student("OScar", 185, 26, "fotboll", "lasagne", "blå", "jobbmöjligheter", "Stockholm", "Stockholm", 1);
+            Student oscar = new Student("Oscar", 185, 26, "fotboll", "lasagne", "blå", "jobbmöjligheter", "Stockholm", "Stockholm", 1);
             Student sanjin = new Student("Sanjin", 179, 30, "fotboll", "pizza", "blå", "jobbmöjligheter", "Norrköping", "Mostar", 2);
             Student jerry = new Student("Jerry", 181, 19, "gaming", "älggryta", "teal", "jobbmöjligheter", "Djurö", "Köln", 1);
             Student cecillia = new Student("Cecillia", 163, 29, "The Sims", "risotto", "gul", "möjlighet att vara kreativ", "Norrköping", "Norrköping", 1);
@@ -78,23 +78,25 @@ namespace iUppgift2
             {
 
                 case 1:
-
-                    foreach (var item in groupMembers)
-                    {
-                        namesOfAllMembers.Add(item.Name);
-                    }
-                    Console.WriteLine(String.Join(", ", namesOfAllMembers)+"\n");
-                    Console.WriteLine("Tryck valfritt tangent för att fortsätta.");
-                    Console.ReadKey();
-                    Console.Clear();
+                    printMembersOnSingleLine();
+                    clearScreen();
                     break;
 
                 case 2:
-
+                    showAllMembersNames();
+                    Console.Write("\nAnge nummer för den personen som du vill veta mera om: ");
+                    int userInput = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
+                    Console.WriteLine(groupMembers[userInput - 1].describe());
+                    clearScreen();
                     break;
 
                 case 3:
-
+                    showAllMembersNames();
+                    Console.Write("\nAnge nummer för den personen som du vill ta bort from gruppen: ");
+                    userInput = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
+                    printMembersOnSingleLine();
                     break;
 
                 case 4:
@@ -109,6 +111,35 @@ namespace iUppgift2
 
         }
 
+
+        static void printMembersOnSingleLine()
+        {
+
+            foreach (var item in groupMembers)
+            {
+                namesOfAllMembers.Add(item.Name);
+            }
+            Console.WriteLine(String.Join(", ", namesOfAllMembers) + "\n");
+
+        }
+
+        static void showAllMembersNames()
+        {
+
+            for (int i = 0; i < groupMembers.Count; i++)
+            {
+                Console.WriteLine((i+1) + ". " + groupMembers[i].Name);
+            }
+
+        }
+
+        static void clearScreen()
+        {
+                    Console.WriteLine("Tryck valfritt tangent för att fortsätta.");
+                    Console.ReadKey();
+                    Console.Clear();
+
+        }
 
     }
 
@@ -152,8 +183,7 @@ namespace iUppgift2
 
         class Menu
         {
-
-            private List<string> menuList = new List<string>() { "1. Lista alla deltagare i gruppen bästkusten", "2. Få ut 10 generella detaljer om en medlem", "3. Ta bort en medlem", "4. Avsluta programmet\n" };
+            private List<string> menuList = new List<string>() { "Lista alla deltagare i gruppen bästkusten", "Få ut 10 generella detaljer om en medlem", "Ta bort en medlem", "Avsluta programmet\n" };
             private int userInput;
             private string userInputDescription;
             private List<object> menuChoiceToReturn = new List<object>();
@@ -162,10 +192,11 @@ namespace iUppgift2
             public void ShowMenu()
             {
 
-                foreach (var item in menuList)
+                for (int i = 0; i < menuList.Count; i++)
                 {
-                    Console.WriteLine(item);
-                }
+                        //Loopen som går igenom listen menuList för att sammanställa en meny där varje rad inleds med en siffra och en punkt. 
+                        Console.WriteLine((i +1 )+ ". " + menuList[i]);
+                }        
 
             }
 
@@ -181,6 +212,7 @@ namespace iUppgift2
                 return menuChoiceToReturn;
 
             }
+
 
         }
 
@@ -343,7 +375,12 @@ namespace iUppgift2
             }
 
  
+        public string describe ()
+            {
+            
+            return ($"Namn: {name}\nLängd: {height}\nÅlder: {age}\nHobby: {hobby}\nFavoritmat: {favoriteFood}\nFavoritfärg: {favoriteColor}\nMotivation till programmering: {whyPrograming}\nHemort: {domicile}\nFödelseort: {birthplace}\nSyskon: {numberOfSiblings}\n");
 
+            }
 
 
         }
