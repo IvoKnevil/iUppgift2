@@ -96,14 +96,25 @@ namespace iUppgift2
                     Console.Write("\nAnge nummer för den personen som du vill ta bort from gruppen: ");
                     userInput = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
+                    Console.WriteLine($"Vill du verkligen ta bort {groupMembers[userInput-1].Name} from grupplistan? (Y/N)");
+                    string answer = Console.ReadLine();
+                    if (answer == "J" || answer == "j" || answer == "Y" || answer == "y")
+                    {
+                        groupMembers.RemoveAt(userInput - 1);
+                    }
+
+                    Console.Write("Medlemmar kvar: ");
                     printMembersOnSingleLine();
+                    clearScreen();
                     break;
+
 
                 case 4:
                     keepPlaying = false;
                     break;
 
                 default:
+                    clearScreen();
                     break;
 
             }
@@ -114,7 +125,7 @@ namespace iUppgift2
 
         static void printMembersOnSingleLine()
         {
-
+            namesOfAllMembers.Clear();
             foreach (var item in groupMembers)
             {
                 namesOfAllMembers.Add(item.Name);
