@@ -53,7 +53,7 @@ namespace iUppgift2
         }
 
 
-        public string describe()
+        public string Describe()
         {
             return ($"Namn: {name}\nLängd: {height}\nÅlder: {age}\nHobby: {hobby}\nFavoritmat: {favoriteFood}\nFavoritfärg: {favoriteColor}\nMotivation till programmering: {whyPrograming}\nHemort: {domicile}\nFödelseort: {birthplace}\nSyskon: {numberOfSiblings}\n");
         }

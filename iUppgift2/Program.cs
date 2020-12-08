@@ -14,13 +14,13 @@ namespace iUppgift2
         static void Main(string[] args)
         {
 
-            runProgram();
+            RunProgram();
 
         }
 
 
 
-        static void runProgram()
+        static void RunProgram()
         {
 
             Console.WriteLine(Welcome());
@@ -77,7 +77,7 @@ namespace iUppgift2
         }
 
 
-        static void ProgramActions(List<object> userMenuChoice)
+        static void ProgramActions(object[] userMenuChoice)
         {
 
             Console.WriteLine("Du har valt " + userMenuChoice[1] + "\n");
@@ -85,26 +85,26 @@ namespace iUppgift2
             {
                 //om användaren valt 1 kallar metoden som printar en lista på medlemars namn, separerat med , tecke. 
                 case 1:
-                    printMembersOnSingleLine();
-                    clearScreen();
+                    PrintMembersOnSingleLine();
+                    ClearScreen();
                     break;
 
                 case 2:
-                    showAllMembersNames(); //kallar metoden för att presentera en meny på gruppens medlemmar.
+                    ShowAllMembersNames(); //kallar metoden för att presentera en meny på gruppens medlemmar.
                     Console.Write("\nAnge nummer för den personen som du vill veta mera om: ");
                     int userInput = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
-                    Console.WriteLine(groupMembers[userInput - 1].describe());  //kallar metoden describe under klassen student.
-                    clearScreen();
+                    Console.WriteLine(groupMembers[userInput - 1].Describe());  //kallar metoden describe under klassen student.
+                    ClearScreen();
                     break;
 
                 case 3:
-                    showAllMembersNames();
-                    removeMemberFromGroup();  //kallar metoden för att ev ta bort en gruppmedlem.
+                    ShowAllMembersNames();
+                    RemoveMemberFromGroup();  //kallar metoden för att ev ta bort en gruppmedlem.
                     Console.Clear();
                     Console.Write("Medlemmar kvar: ");
-                    printMembersOnSingleLine();
-                    clearScreen();
+                    PrintMembersOnSingleLine();
+                    ClearScreen();
                     break;
 
                 case 4:
@@ -112,7 +112,7 @@ namespace iUppgift2
                     break;
 
                 default:
-                    clearScreen();
+                    ClearScreen();
                     break;
 
             }
@@ -120,7 +120,7 @@ namespace iUppgift2
         }
 
 
-        static void printMembersOnSingleLine()
+        static void PrintMembersOnSingleLine()
         {
             //skapar en lista med namn på medlemar för att (innan metoden avslutas) kunna få ut dessa på en rad, separarede med , tecke via en string.join kommando.
             namesOfAllMembers.Clear();
@@ -132,7 +132,7 @@ namespace iUppgift2
 
         }
 
-        static void showAllMembersNames() //Metod som presenterar gruppmedlemar på en menyliknande lista. 
+        static void ShowAllMembersNames() //Metod som presenterar gruppmedlemar på en menyliknande lista. 
         {
 
             for (int i = 0; i < groupMembers.Count; i++)
@@ -142,7 +142,7 @@ namespace iUppgift2
 
         }
 
-        static void removeMemberFromGroup() //Metod för att eventuellt ta bort en gruppmedlem.
+        static void RemoveMemberFromGroup() //Metod för att eventuellt ta bort en gruppmedlem.
         {
             Console.Write("\nAnge nummer för den personen som du vill ta bort from gruppen: ");
             int userInput = Convert.ToInt32(Console.ReadLine());
@@ -156,7 +156,7 @@ namespace iUppgift2
 
         }
 
-        static void clearScreen()
+        static void ClearScreen()
         {
             Console.WriteLine("Tryck valfritt tangent för att fortsätta.");
             Console.ReadKey();
