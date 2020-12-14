@@ -19,7 +19,6 @@ namespace iUppgift2
         }
 
 
-
         static void RunProgram()
         {
 
@@ -42,7 +41,6 @@ namespace iUppgift2
             }
 
         }
-
 
 
         static string Welcome()
@@ -88,19 +86,32 @@ namespace iUppgift2
 
                 case 2:
                     ShowAllMembersNames(); //kallar metoden för att presentera en meny på gruppens medlemmar.
+
                     Console.Write("\nAnge nummer för den personen som du vill veta mera om: ");
                     int userInput = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
-                    Console.WriteLine(groupMembers[userInput - 1].Describe());  //kallar metoden describe under klassen student.
+
+                    if (userInput > 0 && userInput < groupMembers.Count) //Kollar om användaren angett ett nummer som inte är utanför menyintervallen
+                    {
+                        Console.WriteLine(groupMembers[userInput - 1]);  //kallar metoden ToString under klassen student.
+                    }
+                    else
+                    {
+                        Console.WriteLine(Menu.ReturnErrorMsg(userInput));
+                    }
+
                     ClearScreen();
                     break;
 
                 case 3:
                     ShowAllMembersNames();
+
                     RemoveMemberFromGroup();  //kallar metoden för att ev ta bort en gruppmedlem.
                     Console.Clear();
+
                     Console.Write("Medlemmar kvar: ");
                     PrintMembersOnSingleLine();
+
                     ClearScreen();
                     break;
 
@@ -121,10 +132,12 @@ namespace iUppgift2
         {
             //skapar en lista med namn på medlemar för att (innan metoden avslutas) kunna få ut dessa på en rad, separarede med , tecke via en string.join kommando.
             namesOfAllMembers.Clear();
+
             foreach (var item in groupMembers)
             {
                 namesOfAllMembers.Add(item.Name);
             }
+
             Console.WriteLine(String.Join(", ", namesOfAllMembers) + "\n");
 
         }
@@ -144,13 +157,23 @@ namespace iUppgift2
             Console.Write("\nAnge nummer för den personen som du vill ta bort from gruppen: ");
             int userInput = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
-            Console.Write($"Vill du verkligen ta bort {groupMembers[userInput - 1].Name} from grupplistan? (y/n)");
-            string answer = Console.ReadLine();
-            if (answer.ToLower() == "y" || answer.ToLower() == "j")
-            {
-                groupMembers.RemoveAt(userInput - 1);
-            }
 
+            if (userInput > 0 && userInput < groupMembers.Count)
+            {
+                Console.Write($"Vill du verkligen ta bort {groupMembers[userInput - 1].Name} from grupplistan? (y/n)");
+                string answer = Console.ReadLine();
+
+                if (answer.ToLower() == "y" || answer.ToLower() == "j")
+                {
+                    groupMembers.RemoveAt(userInput - 1);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine(Menu.ReturnErrorMsg(userInput));
+                ClearScreen();
+            }
         }
 
         static void ClearScreen()

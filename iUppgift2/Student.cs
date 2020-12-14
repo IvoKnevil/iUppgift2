@@ -53,10 +53,9 @@ namespace iUppgift2
         }
 
 
-        public string Describe()
+        public override string ToString()
         {
             return ($"Namn: {name}\nLängd: {height}\nÅlder: {age}\nHobby: {hobby}\nFavoritmat: {favoriteFood}\nFavoritfärg: {favoriteColor}\nMotivation till programmering: {whyPrograming}\nHemort: {domicile}\nFödelseort: {birthplace}\nSyskon: {numberOfSiblings}\n");
         }
-
     }
 }
