@@ -77,7 +77,7 @@ namespace iUppgift2
         static void ProgramActions(object[] userMenuChoice)
         {
 
-            Console.WriteLine("Du har valt " + userMenuChoice[1] + "\n");
+            Console.WriteLine($"Du har valt {userMenuChoice[1]}\n");
             switch (userMenuChoice[0])
             {
                 //om användaren valt 1 kallar metoden som printar en lista på medlemars namn, separerat med , tecke. 
@@ -134,7 +134,7 @@ namespace iUppgift2
 
             for (int i = 0; i < groupMembers.Count; i++)
             {
-                Console.WriteLine((i + 1) + ". " + groupMembers[i].Name);
+                Console.WriteLine($"{i + 1}. {groupMembers[i].Name}");
             }
 
         }

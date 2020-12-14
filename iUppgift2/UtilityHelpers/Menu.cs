@@ -18,7 +18,7 @@ namespace iUppgift2
             for (int i = 0; i < menuList.Count; i++)
             {
                 //Loopen som går igenom listen menuList för att sammanställa en meny där varje rad inleds med en siffra och en punkt. 
-                Console.WriteLine((i + 1) + ". " + menuList[i]);
+                Console.WriteLine($"{i + 1}. {menuList[i]}");
             }
 
         }

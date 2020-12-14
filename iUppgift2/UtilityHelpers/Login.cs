@@ -26,7 +26,7 @@ namespace iUppgift2
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Du har angett fel lösenord ({0}försök)\n", loginCounter + 1);
+                    Console.WriteLine($"Du har angett fel lösenord ({loginCounter +1}försök)\n");
                     loginCounter++;
                 }
 
