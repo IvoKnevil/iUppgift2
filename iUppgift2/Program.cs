@@ -72,6 +72,7 @@ namespace iUppgift2
             groupMembers.Add(new Student("Jerry", 181, 19, "gaming", "älggryta", "teal", "jobbmöjligheter", "Djurö", "Köln", 1));
             groupMembers.Add(new Student("Cecillia", 163, 29, "The Sims", "risotto", "gul", "möjlighet att vara kreativ", "Norrköping", "Norrköping", 1));
             groupMembers.Add(new Student("Elin", 170, 31, "hästar", "sushi", "röd", "personlig utveckling", "Knivsta", "Karlskoga", 2));
+            groupMembers.Add(new Student("Mostafa", 174, 33, "träning", "oxfile", "svart", "Tycker om att koda och lösa problem", "Stockholm", "Stockholm", 4));
 
             return groupMembers;
         }
