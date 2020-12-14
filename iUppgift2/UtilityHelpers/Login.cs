@@ -4,13 +4,13 @@ using System.Text;
 
 namespace iUppgift2
 {
-    class Login
+    static class Login
     {
-        private int loginCounter = 0;
-        private string password = "bästkusten";
-        private string inputPassword;
+        static private int loginCounter = 0;
+        static private string password = "bästkusten";
+        static private string inputPassword;
 
-        public bool LogingIn()
+        static public bool LogingIn()
         {
                     //loopen som ber användaren mata in sitt inloggningslösen. Räknar antal felaktiga försök. Om användare anger fel lösen tre gången avslutas programmet.
             do

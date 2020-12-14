@@ -4,15 +4,15 @@ using System.Text;
 
 namespace iUppgift2
 {
-    class Menu
+    static class Menu
     {
-        private List<string> menuList = new List<string>() { "Lista alla deltagare i gruppen bästkusten", "Få ut 10 generella detaljer om en medlem", "Ta bort en medlem", "Avsluta programmet\n" };
-        private int userInput;
-        private string userInputDescription;
-        private object[] menuChoiceToReturn = new object[2];
+        private static List<string> menuList = new List<string>() { "Lista alla deltagare i gruppen bästkusten", "Få ut 10 generella detaljer om en medlem", "Ta bort en medlem", "Avsluta programmet\n" };
+        private static int userInput;
+        private static string userInputDescription;
+        private static object[] menuChoiceToReturn = new object[2];
 
 
-        public void ShowMenu()
+        static public void ShowMenu()
         {
 
             for (int i = 0; i < menuList.Count; i++)
@@ -23,7 +23,7 @@ namespace iUppgift2
 
         }
 
-        public object[] UserMenuChoice() //metoden tar in användarens menyval (valet=int, valets beskrivning=string) och lägger till dessa två i en array som skickas tillbaka till programmet. 
+        static public object[] UserMenuChoice() //metoden tar in användarens menyval (valet=int, valets beskrivning=string) och lägger till dessa två i en array som skickas tillbaka till programmet. 
         {
 
             Console.Write("Vänligen välj en funktion i menyn: ");

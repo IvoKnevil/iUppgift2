@@ -6,9 +6,9 @@ namespace iUppgift2
     class Program
     {
 
-        public static bool keepPlaying = true;  // booleanen så att programmet körs så länge användaren inte valt att avsluta.
-        public static List<Student> groupMembers = new List<Student>();
-        public static List<string> namesOfAllMembers = new List<string>();
+        static private bool keepPlaying = true;  // booleanen så att programmet körs så länge användaren inte valt att avsluta.
+        static private List<Student> groupMembers = new List<Student>();
+        static private List<string> namesOfAllMembers = new List<string>();
 
 
         static void Main(string[] args)
@@ -25,21 +25,17 @@ namespace iUppgift2
 
             Console.WriteLine(Welcome());
 
-            //skapar ett objekt för inloggningsprocessen.
-            Login tryToLogin = new Login();
-
             //om lyckad inloggning körs resten av koden, annars avslutas programmet.
-            if (tryToLogin.LogingIn())
+            if (Login.LogingIn())
             {
                 ProgramLayout();
                 groupMembers = CreateStudents(); //kallar metoden som skapar ett objekt för varje student. Lägger till objekten i en lista på medlemmar.
 
-                Menu userMenu = new Menu(); //skapar ett objekt för menyn.
 
                 while (keepPlaying)
                 {
-                    userMenu.ShowMenu();  //kallar metoden som visar menyn.
-                    ProgramActions(userMenu.UserMenuChoice()); //kallar metoden som tar in användarens val, samt skickar det till en ny metod som utför det som användaren valt att göra.
+                    Menu.ShowMenu();  //kallar metoden som visar menyn.
+                    ProgramActions(Menu.UserMenuChoice()); //kallar metoden som tar in användarens val, samt skickar det till en ny metod som utför det som användaren valt att göra.
                 }
 
                 Console.WriteLine("See ya!");
